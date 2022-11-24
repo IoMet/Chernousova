@@ -344,7 +344,7 @@ class Report:
 
 
 class PrepareVacData:
-    def __init__(self):
+    def __init__(self, titles, parsed_vac, inputed):
         salaries = StaticSalary()
         counts = StaticCount()
         result = ResultStatic()
@@ -363,10 +363,12 @@ class PrepareVacData:
         return res[0] if len(res) == 1 else res
 
 
-inputed = UserInput()
-dataset = DataSet(inputed.file_name)
+class Initialization:
+    def __init__(self):
+        inputed = UserInput()
+        dataset = DataSet(inputed.file_name)
 
-titles = dataset.titles
-parsed_vac = dataset.parsed_vacancies
+        titles = dataset.titles
+        parsed_vac = dataset.parsed_vacancies
 
-prepare_vac = PrepareVacData()
+        prepare_vac = PrepareVacData(titles, parsed_vac, inputed)
