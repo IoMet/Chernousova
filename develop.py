@@ -8,4 +8,4 @@ if inputed == "Вакансии":
 elif inputed == "Статистика":
     statistic.Initialization()
 else:
-    print("Вы ввели неправильно")
+    print("Вы ввели неправильно что-то")
