@@ -8,4 +8,8 @@ if inputed == "Вакансии":
 elif inputed == "Статистика":
     statistic.Initialization()
 else:
+<<<<<<< develop
     print("Вы ввели неправильно")
+=======
+    print("Вы ввели неправильно текст")
+>>>>>>> local
