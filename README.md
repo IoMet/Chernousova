@@ -14,11 +14,14 @@
 
 1-й вариант
 
-
+![image](https://user-images.githubusercontent.com/103453818/205712287-75e6960a-78ba-4199-b462-e13c1fe1c5d0.png)
 
 2-й вариант
 
-
+![image](https://user-images.githubusercontent.com/103453818/205712750-8babfdc4-aa23-49c4-bb14-44f4ee550238.png)
 
 3-й вариант
+
+![image](https://user-images.githubusercontent.com/103453818/205713273-857d215d-5cbf-4e27-aae9-4e777726dfee.png)
+
 
