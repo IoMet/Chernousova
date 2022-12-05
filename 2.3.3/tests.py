@@ -10,6 +10,7 @@ import numpy as np
 from matplotlib import ticker
 import pdfkit
 from jinja2 import Environment, FileSystemLoader
+import doctest
 
 currency_to_rub = {
     "Манаты": 35.68,
@@ -165,6 +166,10 @@ class StaticSalary:
     salaries_areas (dict): Уровень зарплат по городам (в порядке убывания) - только первые 10 значений
     vacancies (int): Количество всех вакансий
 
+    >>> StaticSalary().salaries
+    {2007: [], 2008: [], 2009: [], 2010: [], 2011: [], 2012: [], 2013: [], 2014: [], 2015: [], 2016: [], 2017: [], 2018: [], 2019: [], 2020: [], 2021: [], 2022: []}
+    >>> StaticSalary().vacancy_salaries
+    {2007: [], 2008: [], 2009: [], 2010: [], 2011: [], 2012: [], 2013: [], 2014: [], 2015: [], 2016: [], 2017: [], 2018: [], 2019: [], 2020: [], 2021: [], 2022: []}
     """
 
     salaries: dict = {}
@@ -189,6 +194,11 @@ class StaticSalary:
 
         Returns:
         (dict): Отформатированный словарь
+
+        >>> StaticSalary().check_len_dic({}, "Программист")
+        {2022: 0}
+        >>> StaticSalary().check_len_dic({"21": [10, 12, 15], "423": [26, 25, 49], "54": [35, 39, 34]}, "Программист")
+        {'21': 12, '423': 33, '54': 36}
         """
         new_dic = {}
         for name, item in dic.items():
@@ -206,6 +216,9 @@ class StaticCount:
     vac_count (dict): Динамика количества вакансий по годам
     vacancy_count (dict): Динамика количества вакансий по годам для выбранной профессии
     vacancies_areas (dict): Доля вакансий по городам (в порядке убывания) - только первые 10 значений
+
+     >>> StaticCount().vacancy_count
+     {2007: 0, 2008: 0, 2009: 0, 2010: 0, 2011: 0, 2012: 0, 2013: 0, 2014: 0, 2015: 0, 2016: 0, 2017: 0, 2018: 0, 2019: 0, 2020: 0, 2021: 0, 2022: 0}
     """
     vac_count: dict = {}
     vacancy_count: dict = {}
@@ -228,6 +241,11 @@ class StaticCount:
 
         Returns:
         (dict): Отформатированный словарь
+
+        >>> StaticCount().check_int_dic({}, "Программист")
+        {2022: 0}
+        >>> StaticCount().check_int_dic(currency_to_rub, "Программист")
+        {'Манаты': 35.68, 'Белорусские рубли': 23.91, 'Евро': 59.9, 'Грузинский лари': 21.74, 'Киргизский сом': 0.76, 'Тенге': 0.13, 'Рубли': 1, 'Гривны': 1.64, 'Доллары': 60.66, 'Узбекский сум': 0.0055}
         """
         new_dic = {}
         for name, item in dic.items():
@@ -515,15 +533,15 @@ class Report:
 
 
 class PrepareVacData:
-    """Класс для подготовки данных вакансии.
-        """
-    def __init__(self, titles, parsed_vac, inputed):
+    """Класс для подготовки данных вакансии."""
+
+    def __init__(self, titles, parsed_vac, vacancy_name):
         """Инициализирует класс PrepareVacData
 
         Args:
         titles (list): список с названиями заголовков
         parsed_vac (list): список всех отформатированных строк файла
-        inputed (UserInput): экземпляр класса UserInput
+        vacancy_name (str): введеная профессия
         """
         salaries = StaticSalary()
         counts = StaticCount()
@@ -531,8 +549,8 @@ class PrepareVacData:
 
         for one_parsed_vac in parsed_vac:
             parsed_data = Vacancy(dict(zip(titles, map(self.prepare, one_parsed_vac))))
-            parsed_data.fill_data_dicts(salaries, counts, inputed.vacancy_name)
-        result.print_result(inputed.vacancy_name, salaries, counts)
+            parsed_data.fill_data_dicts(salaries, counts, vacancy_name)
+        result.print_result(vacancy_name, salaries, counts)
         report = Report(inputed.vacancy_name, result.list_by_year, result.list_by_area, result.others)
 
     @staticmethod
@@ -557,4 +575,4 @@ dataset = DataSet(inputed.file_name)
 titles = dataset.titles
 parsed_vac = dataset.parsed_vacancies
 
-prepare_vac = PrepareVacData(titles, parsed_vac, inputed)
+prepare_vac = PrepareVacData(titles, parsed_vac, inputed.vacancy_name)
