@@ -25,3 +25,15 @@
 ![image](https://user-images.githubusercontent.com/103453818/205713273-857d215d-5cbf-4e27-aae9-4e777726dfee.png)
 
 
+3.2.2
+
+Без многопроцессорной обработки
+![image](https://user-images.githubusercontent.com/103453818/206860105-11a9b607-1eac-4def-809b-0b951238663d.png)
+
+Многопроцессорная обработка multiprocessing
+![image](https://user-images.githubusercontent.com/103453818/206860127-b72cd254-18bd-4db0-9224-de2d38c70c99.png)
+
+3.2.3
+
+Многопроцессорная обработка с concurrent futures
+![image](https://user-images.githubusercontent.com/103453818/206860157-0b35a741-49fc-43df-8913-2c1f7677122e.png)
