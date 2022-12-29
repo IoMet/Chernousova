@@ -374,7 +374,7 @@ class Report:
         list_by_area (list[]): Список словарей распределенных по городам
         """
         env = Environment(loader=FileSystemLoader('.'))
-        template = env.get_template("3.4.2.html")
+        template = env.get_template("3.4.3.html")
 
         pdf_template = template.render(
             {'name': vacancy_name, 'list_by_year': list_by_year, 'list_by_area': list_by_area,

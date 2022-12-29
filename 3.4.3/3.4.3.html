@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>report</title>
+    <style>
+        body{
+            font-family: Verdana, sans-serif;
+            text-align: center;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th {
+           border: 1px solid black;
+           padding: 5px;
+        }
+
+        td {
+           border: 1px solid black;
+           padding: 5px;
+        }
+
+        .border-off{
+            border: none;
+        }
+
+        img{
+            width: 100%
+        }
+
+    </style>
+</head>
+<body>
+<h1 class="header">Аналитика по зарплатам и городам для профессии {{ name }}</h1>
+
+<img src="file:///D:/Питон. Обработка статистических данных/3.4.3/graph.png">
+
+<h2>Статистика по годам</h2>
+<table>
+    <tr>
+        <th>Год</th>
+        <th>Средняя зарплата - {{ name }}, регион - {{ region }}</th>
+        <th>Количество вакансий - {{ name }}, регион - {{ region }}</th>
+    </tr>
+    {% for year, value in list_by_year[0].items() -%}
+    <tr>
+        <td>{{ year }}</td>
+        <td>{{ value }}</td>
+        <td>{{ list_by_year[1][year] }}</td>
+    </tr>
+    {%- endfor %}
+</table>
+
+<h2>Статистика по городам</h2>
+<table>
+    <tr>
+        <th>Город</th>
+        <th>Уровень зарплат</th>
+        <th class="border-off"></th>
+        <th>Город</th>
+        <th>Доля вакансий</th>
+    </tr>
+    {% for i in range(list_by_area[0] | length) -%}
+    <tr>
+        <td>{{ area_td_1[i] }}</td>
+        <td>{{ area_td_2[i] }}</td>
+        <td class="border-off"></td>
+        <td>{{ area_td_3[i] }}</td>
+        <td>{{ ((area_td_4[i] * 100)|round(2))|string + "%" }}</td>
+    </tr>
+    {%- endfor %}
+</table>
+</body>
+</html>
