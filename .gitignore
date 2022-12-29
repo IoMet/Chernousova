@@ -1,4 +1,9 @@
 *.csv
+*.h2.db
+*.db
 .idea
 /venv
 /.idea
+!currency_from_api.csv
+!vacancies_dif_currencies_100.csv
+!vacancies_head_hunter_2022_12_20.csv
